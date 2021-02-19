@@ -19,6 +19,12 @@
 <div class="container-fluid">
   <div class="container xd-container">
     <h2>Owners</h2>
+
+    <!-- searchName ist der Parameter für die Eingabe in das Suchfeld-->
+    <div id="search-bar">
+      <input type="text" [(ngModel)]="searchName">
+    </div>
+
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -32,7 +38,10 @@
         </thead>
 
         <tbody>
-        <tr *ngFor="let owner of owners">
+          
+
+          <!-- Hier wird in der Liste der Filter angewendet-->
+        <tr *ngFor="let owner of owners | filter:searchName">
           <td class="ownerFullName"><a routerLink="/owners/{{owner.id}}" routerLinkActive="active"
                                        (click)="onSelect(owner)">{{ owner.firstName }} {{ owner.lastName }}</a></td>
           <td>{{ owner.address }}</td>
