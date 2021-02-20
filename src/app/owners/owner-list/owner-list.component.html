@@ -16,48 +16,46 @@
   ~  */
   -->
 
-<div class="container-fluid">
-  <div class="container xd-container">
-    <h2>Owners</h2>
+  <div class="container-fluid">
+    <div class="container xd-container">
+      <h2>Owners</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Telephone</th>
+            <th>Pets</th>
+          </tr>
+          </thead>
+  
+          <!-- Eingabefeld zum Filtern von Ownern-->
+          <div class="suchfeld">
+            <input type="text" [(ngModel)]="searchText" placeholder="Search">
+          </div>
 
-    <!-- searchName ist der Parameter für die Eingabe in das Suchfeld-->
-    <div id="search-bar">
-      <input type="text" [(ngModel)]="searchName">
-    </div>
 
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>Telephone</th>
-          <th>Pets</th>
-        </tr>
-        </thead>
-
-        <tbody>
-          
-
-          <!-- Hier wird in der Liste der Filter angewendet-->
-        <tr *ngFor="let owner of owners | filter:searchName">
-          <td class="ownerFullName"><a routerLink="/owners/{{owner.id}}" routerLinkActive="active"
-                                       (click)="onSelect(owner)">{{ owner.firstName }} {{ owner.lastName }}</a></td>
-          <td>{{ owner.address }}</td>
-          <td>{{ owner.city }}</td>
-          <td>{{ owner.telephone }}</td>
-          <td>
-        <tr *ngFor="let pet of owner.pets">
-          {{ pet.name }}
-        </tr>
-        </td>
-        </tr>
-        </tbody>
-      </table>
-      <div>
-        <button class="btn btn-default" (click)="addOwner()">Add Owner</button>
+          <!--Diese Tabelle beinhaltet alle Owner und wird gefiltert-->
+          <tbody>
+          <tr *ngFor="let owner of owners | filter: searchText; let i = index">
+            <td class="ownerFullName"><a routerLink="/owners/{{owner.id}}" routerLinkActive="active"
+                                         (click)="onSelect(owner)">{{ owner.firstName }} {{ owner.lastName }}</a></td>
+            <td>{{ owner.address }}</td>
+            <td>{{ owner.city }}</td>
+            <td>{{ owner.telephone }}</td>
+            <td>
+          <tr *ngFor="let pet of owner.pets">
+            {{ pet.name }}
+          </tr>
+          </td>
+          </tr>
+          </tbody>
+        </table>
+        <div>
+          <button class="btn btn-default" (click)="addOwner()">Add Owner</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

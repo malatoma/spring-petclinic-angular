@@ -24,8 +24,8 @@ import {Component, OnInit} from '@angular/core';
 import {OwnerService} from '../owner.service';
 import {Owner} from '../owner';
 import {Router} from '@angular/router';
-//import { Pipe, PipeTransform } from '@angular/core';
-import {FilterPipe} from '../../filter.pipe';
+import {FilterPipe} from 'app/filter.pipe';
+
 
 
 
@@ -36,21 +36,20 @@ import {FilterPipe} from '../../filter.pipe';
 
 })
 
-
-
 export class OwnerListComponent implements OnInit {
   errorMessage: string;
   owners: Owner[];
-  searchName:string="";
+  searchName:string;
 
 
 
   constructor(private router: Router, private ownerService: OwnerService, private filter: FilterPipe) {
+  
+  
   }
 
   ngOnInit() {
     this.ownerService.getOwners().subscribe(
-      owners => this.owners = owners,
       error => this.errorMessage = error as any);
   }
 

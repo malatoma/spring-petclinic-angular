@@ -22,6 +22,7 @@
 
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
@@ -35,14 +36,22 @@ import {PartsModule} from './parts/parts.module';
 import {SpecialtiesModule} from './specialties/specialties.module';
 import {HttpErrorHandler} from './error.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FilterPipe} from './filter.pipe';
+import {FilterPipe} from 'app/filter.pipe';
+import {Owner} from '../app/owners/owner';
+import { CommonModule }        from '@angular/common';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent,
     FilterPipe,
     
   ],
+  exports: [
+    FilterPipe,
+  ],
+
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -55,7 +64,10 @@ import {FilterPipe} from './filter.pipe';
     SpecialtiesModule,
     PartsModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FilterPipe,
+    DecimalPipe,
+    CommonModule,
   ],
   providers: [
     HttpErrorHandler,
@@ -63,4 +75,5 @@ import {FilterPipe} from './filter.pipe';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

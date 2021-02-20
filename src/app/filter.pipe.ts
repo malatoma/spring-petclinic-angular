@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Owner } from './owners/owner';
 
 @Pipe({
   name: 'filter'
