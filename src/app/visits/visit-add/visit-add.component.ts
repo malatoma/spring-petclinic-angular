@@ -20,7 +20,7 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Visit} from '../visit';
 import {VisitService} from '../visit.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -28,6 +28,8 @@ import {PetService} from '../../pets/pet.service';
 import {Pet} from '../../pets/pet';
 import {PetType} from '../../pettypes/pettype';
 import {Owner} from '../../owners/owner';
+import {Vet} from '../../vets/vet';
+import {VetService} from '../../vets/vet.service';
 
 import * as moment from 'moment';
 
@@ -36,26 +38,40 @@ import * as moment from 'moment';
   templateUrl: './visit-add.component.html',
   styleUrls: ['./visit-add.component.css']
 })
+
 export class VisitAddComponent implements OnInit {
 
+  @Input() 
   visit: Visit;
   currentPet: Pet;
   currentOwner: Owner;
   currentPetType: PetType;
+  currentVet: Vet;
+  vets: Vet[];
   addedSuccess = false;
   errorMessage: string;
 
-  constructor(private visitService: VisitService, private petService: PetService, private router: Router, private route: ActivatedRoute) {
+  constructor(private visitService: VisitService, private petService: PetService,private vetService: VetService,
+  private router: Router, private route: ActivatedRoute) {
     this.visit = {} as Visit;
     this.currentPet = {} as Pet;
     this.currentOwner = {} as Owner;
     this.currentPetType = {} as PetType;
-
+    this.currentVet = {} as Vet;
+    this.vets = [];
   }
+
 
   ngOnInit() {
     console.log(this.route.parent);
     const petId = this.route.snapshot.params.id;
+
+    this.vetService.getVets().subscribe(
+    vetes => this.vets = vetes,
+    error => this.errorMessage = error as any);
+
+    
+
     this.petService.getPetById(petId).subscribe(
       response => {
         this.currentPet = response;
@@ -73,6 +89,7 @@ export class VisitAddComponent implements OnInit {
     // format output from datepicker to short string yyyy/mm/dd format
     visit.date = moment(visit.date).format('YYYY/MM/DD');
 
+    
 
     this.visitService.addVisit(visit).subscribe(
       newVisit => {
