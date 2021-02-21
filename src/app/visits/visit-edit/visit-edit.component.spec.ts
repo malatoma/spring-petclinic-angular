@@ -33,9 +33,11 @@ import {ActivatedRouteStub, RouterStub} from '../../testing/router-stubs';
 import {Visit} from '../visit';
 import {Observable, of} from 'rxjs';
 import {Pet} from '../../pets/pet';
+import {Vet} from '../../vets/vet';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import Spy = jasmine.Spy;
+import { VetAddComponent } from 'app/vets/vet-add/vet-add.component';
 
 class VisitServiceStub {
   getVisitById(visitId: string): Observable<Visit> {
@@ -49,6 +51,7 @@ describe('VisitEditComponent', () => {
   let visitService: VisitService;
   let testVisit: Visit;
   let testPet: Pet;
+  let testVet: Vet;
   let spy: Spy;
 
   beforeEach(async(() => {
@@ -68,6 +71,7 @@ describe('VisitEditComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VisitEditComponent);
     component = fixture.componentInstance;
+
     testPet = {
       id: 1,
       name: 'Leo',
@@ -88,8 +92,10 @@ describe('VisitEditComponent', () => {
       id: 1,
       date: '2016-09-07',
       description: '',
-      pet: testPet
+      pet: testPet,
+      vet: testVet
     };
+
 
     visitService = fixture.debugElement.injector.get(VisitService);
     spy = spyOn(visitService, 'getVisitById')

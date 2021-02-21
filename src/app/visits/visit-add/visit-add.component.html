@@ -29,6 +29,7 @@
         <th>Birth Date</th>
         <th>Type</th>
         <th>Owner</th>
+        <th>Vet</th>
       </tr>
       </thead>
       <tr>
@@ -36,6 +37,7 @@
         <td>{{ currentPet.birthDate }}</td>
         <td>{{ currentPetType.name }}</td>
         <td>{{ currentOwner.firstName }} {{ currentOwner.lastName }}</td>
+        
       </tr>
 
     </table>
@@ -59,6 +61,20 @@
                    [(ngModel)]="visit.description"/>
           </div>
         </div>
+        
+
+            <div class="control-group">
+        <div class="form-group ">
+          <label for="vet" class="col-sm-2 control-label">Vet </label>
+          <div class="col-sm-10">
+            <select id="vet" name="vet" class="form-control" [(ngModel)]="visit.vet">
+              <option *ngFor="let vet of vets"
+                      [ngValue]="vet">{{ vet.lastName }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
 
       </div>
       <div class="form-group">
@@ -70,6 +86,7 @@
         </div>
       </div>
     </form>
+    
 
     <br/>
     <div class="col-12 text-left">
