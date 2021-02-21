@@ -21,6 +21,7 @@
  */
 
 import {Component} from '@angular/core';
+import { Owner } from './owners/owner';
 
 @Component({
   selector: 'app-root',
@@ -28,5 +29,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  searchText: string;
 }

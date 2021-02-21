@@ -25,8 +25,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
-import { Pipe, PipeTransform } from '@angular/core';
-import {FilterPipe} from 'app/filter.pipe';
+
 import {OwnerListComponent} from './owner-list.component';
 import {FormsModule} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
@@ -43,7 +42,6 @@ import {DummyComponent} from '../../testing/dummy.component';
 import {OwnerAddComponent} from '../owner-add/owner-add.component';
 import {OwnerEditComponent} from '../owner-edit/owner-edit.component';
 import Spy = jasmine.Spy;
-
 
 
 class OwnerServiceStub {

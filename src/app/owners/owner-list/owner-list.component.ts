@@ -26,30 +26,25 @@ import {Owner} from '../owner';
 import {Router} from '@angular/router';
 import {FilterPipe} from 'app/filter.pipe';
 
-
-
-
 @Component({
   selector: 'app-owner-list',
   templateUrl: './owner-list.component.html',
   styleUrls: ['./owner-list.component.css']
-
 })
-
 export class OwnerListComponent implements OnInit {
   errorMessage: string;
   owners: Owner[];
-  searchName:string;
+  filterargs = {title: 'hello'};
+  searchText: string;
 
 
 
-  constructor(private router: Router, private ownerService: OwnerService, private filter: FilterPipe) {
-  
-  
+  constructor(private router: Router, private ownerService: OwnerService, private myfilter: FilterPipe) {
   }
 
   ngOnInit() {
     this.ownerService.getOwners().subscribe(
+      owners => this.owners = owners,
       error => this.errorMessage = error as any);
   }
 
@@ -60,6 +55,4 @@ export class OwnerListComponent implements OnInit {
   addOwner() {
     this.router.navigate(['/owners/add']);
   }
-
-
 }

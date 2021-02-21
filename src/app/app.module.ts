@@ -36,19 +36,20 @@ import {PartsModule} from './parts/parts.module';
 import {SpecialtiesModule} from './specialties/specialties.module';
 import {HttpErrorHandler} from './error.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FilterPipe} from 'app/filter.pipe';
 import {Owner} from '../app/owners/owner';
 import { CommonModule }        from '@angular/common';
-
+import{FilterPipe} from 'app/filter.pipe';
+import { from } from 'rxjs';
 
 
 @NgModule({
   declarations: [
-    FilterPipe,
-    
+    AppComponent,
+    FilterPipe
+
   ],
   exports: [
-    FilterPipe,
+    
   ],
 
 
@@ -65,9 +66,9 @@ import { CommonModule }        from '@angular/common';
     PartsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FilterPipe,
-    DecimalPipe,
     CommonModule,
+
+
   ],
   providers: [
     HttpErrorHandler,

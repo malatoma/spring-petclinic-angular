@@ -19,6 +19,10 @@
   <div class="container-fluid">
     <div class="container xd-container">
       <h2>Owners</h2>
+
+
+      <input type="text" [(ngModel)]="searchText" placeholder="Suche">
+
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -31,15 +35,8 @@
           </tr>
           </thead>
   
-          <!-- Eingabefeld zum Filtern von Ownern-->
-          <div class="suchfeld">
-            <input type="text" [(ngModel)]="searchText" placeholder="Search">
-          </div>
-
-
-          <!--Diese Tabelle beinhaltet alle Owner und wird gefiltert-->
           <tbody>
-          <tr *ngFor="let owner of owners | filter: searchText; let i = index">
+          <tr *ngFor="let owner of owners | myfilter: searchText">{{owner.firstName}}>
             <td class="ownerFullName"><a routerLink="/owners/{{owner.id}}" routerLinkActive="active"
                                          (click)="onSelect(owner)">{{ owner.firstName }} {{ owner.lastName }}</a></td>
             <td>{{ owner.address }}</td>

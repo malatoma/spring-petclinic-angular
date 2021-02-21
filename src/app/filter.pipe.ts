@@ -1,23 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+  name: 'myfilter',
+  //pure: false
 })
 export class FilterPipe implements PipeTransform {
-  transform(value: any, sName: string): any {
-    if(sName===""){
-      return value;
-    }
-  
-    const ownersArray:any[]=[];
-    for(let i=0; i<=value.length;i++){
-      let testOwner:string=value[i].firstName;
-      if(testOwner.startsWith(sName)){
-        ownersArray.push(value[i]);
-      }
-  
-    }
-    return ownersArray;
-  }
+  transform(items: any[], searchText: string): any[] {
+    if (!items) return [];
+    if (!searchText) return items;
 
-  }
+    return items.filter(item => {
+      return Object.keys(item).some(key => {
+        return String(item[key]).toLowerCase().includes(searchText.toLowerCase());
+      });
+    });
+   }
+}
