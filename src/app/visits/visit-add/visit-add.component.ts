@@ -40,37 +40,44 @@ import * as moment from 'moment';
 })
 
 export class VisitAddComponent implements OnInit {
-
-  @Input() 
   visit: Visit;
+  @Input()currentVet: Vet;
   currentPet: Pet;
   currentOwner: Owner;
   currentPetType: PetType;
-  currentVet: Vet;
-  vets: Vet[];
+  vetArray: Vet[];
+  //vetName: string;
   addedSuccess = false;
   errorMessage: string;
 
-  constructor(private visitService: VisitService, private petService: PetService,private vetService: VetService,
-  private router: Router, private route: ActivatedRoute) {
+  constructor(private visitService: VisitService, private petService: PetService,
+              private router: Router,private vetService: VetService, private route: ActivatedRoute) {
     this.visit = {} as Visit;
     this.currentPet = {} as Pet;
     this.currentOwner = {} as Owner;
     this.currentPetType = {} as PetType;
     this.currentVet = {} as Vet;
-    this.vets = [];
+    this.vetArray = [];
+
   }
 
 
   ngOnInit() {
     console.log(this.route.parent);
+    const vetId = this.route.snapshot.params.id;
     const petId = this.route.snapshot.params.id;
 
     this.vetService.getVets().subscribe(
-    vetes => this.vets = vetes,
+    vetArray2 => this.vetArray = vetArray2,
     error => this.errorMessage = error as any);
 
-    
+
+    // this.vetService.getVetById(vetId).subscribe(
+    //   response => {
+    //     this.currentVet = response;
+    //     this.visit.vet = this.currentVet;
+    //   },
+    //   error => this.errorMessage = error as any);
 
     this.petService.getPetById(petId).subscribe(
       response => {
@@ -86,10 +93,12 @@ export class VisitAddComponent implements OnInit {
     visit.id = null;
     const that = this;
 
+    visit.vets=[];
+    if (this.currentVet.id !== undefined) {
+      visit.vets.push(this.currentVet);
+    }
     // format output from datepicker to short string yyyy/mm/dd format
     visit.date = moment(visit.date).format('YYYY/MM/DD');
-
-    
 
     this.visitService.addVisit(visit).subscribe(
       newVisit => {
@@ -97,8 +106,7 @@ export class VisitAddComponent implements OnInit {
         this.addedSuccess = true;
         that.gotoOwnerDetail();
       },
-      error => this.errorMessage = error as any
-    );
+      error => this.errorMessage = error as any)
   }
 
   gotoOwnerDetail() {

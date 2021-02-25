@@ -29,7 +29,7 @@
         <th>Birth Date</th>
         <th>Type</th>
         <th>Owner</th>
-        <th>Vet</th>
+        
       </tr>
       </thead>
       <tr>
@@ -62,25 +62,39 @@
           </div>
         </div>
         
-
-            <div class="control-group">
+        <div class="control-group">
         <div class="form-group ">
           <label for="vet" class="col-sm-2 control-label">Vet </label>
           <div class="col-sm-10">
-            <select id="vet" name="vet" class="form-control" [(ngModel)]="visit.vet">
-              <option *ngFor="let vet of vets"
-                      [ngValue]="vet">{{ vet.lastName }}
+            <select id="vets" name="vets" class="form-control" [(ngModel)]="currentVet">
+              <option *ngFor="let veter of vetArray"
+                      [ngValue]="veter">{{ veter.lastName }}
               </option>
             </select>
           </div>
         </div>
       </div>
 
+
+       <!-- <div class="control-group">
+        <div class="form-group ">
+          <label for="vet" class="col-sm-2 control-label">Vet </label>
+          <div class="col-sm-10">
+            <select id="vets" name="vet" class="form-control" [(ngModel)]="currentVet">
+              <option *ngFor="let vet of vetArray"
+                      [ngValue]="vet">{{ vet.lastName }}
+              </option>
+            </select>
+        </div>
+      </div> -->
+        
+
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <input type="hidden" name="id" id="id" [(ngModel)]="visit.id"/>
           <input type="hidden" name="pet" id="pet" [(ngModel)]="visit.pet"/>
+          <input type="hidden" name="vet" id="vet" [(ngModel)]="visit.vets"/>
           <button class="btn btn-default" type="button" (click)="gotoOwnerDetail()">Back</button>
           <button class="btn btn-default" type="submit">Add Visit</button>
         </div>

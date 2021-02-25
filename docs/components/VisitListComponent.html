@@ -618,19 +618,29 @@ export class VisitListComponent implements OnInit {
   &lt;tr&gt;
     &lt;th&gt;Visit Date&lt;/th&gt;
     &lt;th&gt;Description&lt;/th&gt;
+    &lt;th&gt;Vet&lt;/th&gt;
     &lt;th&gt;Actions&lt;/th&gt;
+    
   &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tr *ngFor&#x3D;&quot;let visit of visits&quot;&gt;
     &lt;td&gt;{{ visit.date }}&lt;/td&gt;
     &lt;td&gt;{{ visit.description }}&lt;/td&gt;
+
+    &lt;td *ngFor&#x3D;&quot;let veter of visit.vet&quot;&gt;
+            {{ veter.vet}
+          &lt;/td&gt;
+    &lt;!-- &lt;td&gt;{{ visit.vets}}&lt;/td&gt; --&gt;
+    
+    &lt;!-- &lt;td  *ngFor&#x3D;&quot;let vet of visits&quot;&gt;{{ vet }} {{ vet }}&lt;/td&gt; --&gt;
     &lt;td&gt;
       &lt;button class&#x3D;&quot;btn btn-default&quot; (click)&#x3D;&quot;editVisit(visit)&quot;&gt;Edit Visit&lt;/button&gt;
       &lt;button class&#x3D;&quot;btn btn-default&quot; (click)&#x3D;&quot;deleteVisit(visit)&quot;&gt;Delete Visit&lt;/button&gt;
     &lt;/td&gt;
+     &lt;!-- &lt;td *ngFor&#x3D;&quot;let vet of vets&quot;&gt;{{ visit.date }}&lt;/td&gt;  --&gt;
+    
   &lt;/tr&gt;
 &lt;/table&gt;
-
 
 
 
@@ -688,7 +698,7 @@ export class VisitListComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!--  ~ /*  ~  * Copyright 2016-2017 the original author or authors.  ~  *  ~  * Licensed under the Apache License, Version 2.0 (the "License");  ~  * you may not use this file except in compliance with the License.  ~  * You may obtain a copy of the License at  ~  *  ~  *      http://www.apache.org/licenses/LICENSE-2.0  ~  *  ~  * Unless required by applicable law or agreed to in writing, software  ~  * distributed under the License is distributed on an "AS IS" BASIS,  ~  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  ~  * See the License for the specific language governing permissions and  ~  * limitations under the License.  ~  */  --><table [hidden]="noVisits" class=" table table-condensed">  <thead>  <tr>    <th>Visit Date</th>    <th>Description</th>    <th>Actions</th>  </tr>  </thead>  <tr *ngFor="let visit of visits">    <td>{{ visit.date }}</td>    <td>{{ visit.description }}</td>    <td>      <button class="btn btn-default" (click)="editVisit(visit)">Edit Visit</button>      <button class="btn btn-default" (click)="deleteVisit(visit)">Delete Visit</button>    </td>  </tr></table></div>'
+        var COMPONENT_TEMPLATE = '<div><!--  ~ /*  ~  * Copyright 2016-2017 the original author or authors.  ~  *  ~  * Licensed under the Apache License, Version 2.0 (the "License");  ~  * you may not use this file except in compliance with the License.  ~  * You may obtain a copy of the License at  ~  *  ~  *      http://www.apache.org/licenses/LICENSE-2.0  ~  *  ~  * Unless required by applicable law or agreed to in writing, software  ~  * distributed under the License is distributed on an "AS IS" BASIS,  ~  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  ~  * See the License for the specific language governing permissions and  ~  * limitations under the License.  ~  */  --><table [hidden]="noVisits" class=" table table-condensed">  <thead>  <tr>    <th>Visit Date</th>    <th>Description</th>    <th>Vet</th>    <th>Actions</th>      </tr>  </thead>  <tr *ngFor="let visit of visits">    <td>{{ visit.date }}</td>    <td>{{ visit.description }}</td>    <td *ngFor="let veter of visit.vet">            {{ veter.vet}          </td>    <!-- <td>{{ visit.vets}}</td> -->        <!-- <td  *ngFor="let vet of visits">{{ vet }} {{ vet }}</td> -->    <td>      <button class="btn btn-default" (click)="editVisit(visit)">Edit Visit</button>      <button class="btn btn-default" (click)="deleteVisit(visit)">Delete Visit</button>    </td>     <!-- <td *ngFor="let vet of vets">{{ visit.date }}</td>  -->      </tr></table></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DummyComponent', 'selector': ''},{'name': 'OwnerAddComponent', 'selector': 'app-owner-add'},{'name': 'OwnerDetailComponent', 'selector': 'app-owner-detail'},{'name': 'OwnerEditComponent', 'selector': 'app-owner-edit'},{'name': 'OwnerListComponent', 'selector': 'app-owner-list'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PetAddComponent', 'selector': 'app-pet-add'},{'name': 'PetEditComponent', 'selector': 'app-pet-edit'},{'name': 'PetListComponent', 'selector': 'app-pet-list'},{'name': 'PettypeAddComponent', 'selector': 'app-pettype-add'},{'name': 'PettypeEditComponent', 'selector': 'app-pettype-edit'},{'name': 'PettypeListComponent', 'selector': 'app-pettype-list'},{'name': 'RouterOutletStubComponent', 'selector': 'app-router-outlet'},{'name': 'SpecialtyAddComponent', 'selector': 'app-specialty-add'},{'name': 'SpecialtyEditComponent', 'selector': 'app-specialty-edit'},{'name': 'SpecialtyListComponent', 'selector': 'app-specialty-list'},{'name': 'VetAddComponent', 'selector': 'app-vet-add'},{'name': 'VetEditComponent', 'selector': 'app-vet-edit'},{'name': 'VetListComponent', 'selector': 'app-vet-list'},{'name': 'VisitAddComponent', 'selector': 'app-visit-add'},{'name': 'VisitEditComponent', 'selector': 'app-visit-edit'},{'name': 'VisitListComponent', 'selector': 'app-visit-list'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'}];
     var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[appRouterLink]'}];
     var ACTUAL_COMPONENT = {'name': 'VisitListComponent'};
@@ -727,6 +737,7 @@ export class VisitListComponent implements OnInit {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
             var COMPODOC_CURRENT_PAGE_URL = 'VisitListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
