@@ -72,12 +72,12 @@ export class VisitAddComponent implements OnInit {
     error => this.errorMessage = error as any);
 
 
-    // this.vetService.getVetById(vetId).subscribe(
-    //   response => {
-    //     this.currentVet = response;
-    //     this.visit.vet = this.currentVet;
-    //   },
-    //   error => this.errorMessage = error as any);
+     this.vetService.getVetById(vetId).subscribe(
+       response => {
+         this.currentVet = response;
+         this.visit.vet = this.currentVet;
+       },
+       error => this.errorMessage = error as any);
 
     this.petService.getPetById(petId).subscribe(
       response => {
@@ -93,10 +93,10 @@ export class VisitAddComponent implements OnInit {
     visit.id = null;
     const that = this;
 
-    visit.vets=[];
-    if (this.currentVet.id !== undefined) {
-      visit.vets.push(this.currentVet);
-    }
+    // visit.vets=[];
+    // if (this.currentVet.id !== undefined) {
+    //   visit.vets.push(this.currentVet);
+    // }
     // format output from datepicker to short string yyyy/mm/dd format
     visit.date = moment(visit.date).format('YYYY/MM/DD');
 
