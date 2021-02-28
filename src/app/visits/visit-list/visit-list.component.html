@@ -29,13 +29,13 @@
   <tr *ngFor="let visit of visits">
     <td>{{ visit.date }}</td>
     <td>{{ visit.description }}</td>
-
-    <td *ngFor="let veter of visit.vets">
+    <td>{{ visit.vet }}</td>
+    <!-- <td *ngFor="let veter of visit.vet">
             {{ veter.lastName}
           </td>
-    <!-- <td>{{ visit.vets}}</td> -->
+    <td>{{ visit.vets}}</td> -->
     
-    <!-- <td  *ngFor="let vet of visits">{{ vet }} {{ vet }}</td> -->
+    
     <td>
       <button class="btn btn-default" (click)="editVisit(visit)">Edit Visit</button>
       <button class="btn btn-default" (click)="deleteVisit(visit)">Delete Visit</button>

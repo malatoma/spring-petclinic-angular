@@ -66,7 +66,7 @@
         <div class="form-group ">
           <label for="vet" class="col-sm-2 control-label">Vet </label>
           <div class="col-sm-10">
-            <select id="vets" name="vets" class="form-control" [(ngModel)]="visit.id">
+            <select id="vets" name="vets" class="form-control" [(ngModel)]="visit.vet">
               <option *ngFor="let veter of vetArray"
                       [ngValue]="veter">{{ veter.lastName }}
               </option>

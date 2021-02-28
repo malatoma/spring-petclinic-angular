@@ -72,12 +72,12 @@ export class VisitAddComponent implements OnInit {
     error => this.errorMessage = error as any);
 
 
-     this.vetService.getVetById(vetId).subscribe(
-       response => {
-         this.currentVet = response;
-         this.visit.vet = this.currentVet;
-       },
-       error => this.errorMessage = error as any);
+    //  this.vetService.getVetById(vetId).subscribe(
+    //    response => {
+    //      this.currentVet = response;
+    //      this.visit.vet = this.currentVet;
+    //    },
+    //    error => this.errorMessage = error as any);
 
     this.petService.getPetById(petId).subscribe(
       response => {
